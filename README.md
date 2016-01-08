@@ -87,6 +87,10 @@ onCloseModal | Event trigger when popup closes
 ## Demo
 [working on it](http://www.google.com)
 
+## License
+Popitup jquery plugin is available under the MIT license.
+Feel free to use it.
+
 
 
 
