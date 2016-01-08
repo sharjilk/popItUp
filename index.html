@@ -39,6 +39,12 @@
         right: 0;
         opacity: 0.5;
       }
+      .margin-top-40{
+        margin-top: 40px;
+      }
+      .list-group-item{
+        border: 0;
+      }
     </style>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -59,43 +65,282 @@
 
       <!-- Jumbotron -->
       <div class="jumbotron">
-        <h1>Marketing stuff!</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet.</p>
+        <h1>Popitup</h1>
+        <p class="lead">Popitup is a light weight jquery plugin with some cool jquery animation effects. It follows viewport center when page scrolls and loads the external file using ajax. You can make popup fixed at screen or can change position by specifying offset values or you can do a lots of stuffs with it.</p>
         <p><a id="showPopupBtn" class="btn btn-lg btn-success" href="javascript:void(0);" role="button">Show Popup</a></p>
       </div>
 
       <!-- Example row of columns -->
       <div class="row">
-        <div class="col-lg-4">
-          <h2>Safari bug warning!</h2>
-          <p class="text-danger">As of v8.0, Safari exhibits a bug in which resizing your browser horizontally causes rendering errors in the justified nav that are cleared upon refreshing.</p>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
-        </div>
-        <div class="col-lg-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-          <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
-       </div>
-        <div class="col-lg-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
-          <p><a class="btn btn-primary" href="#" role="button">View details »</a></p>
+        <div class="col-lg-12">
+          <h3>
+            <a href="https://github.com/sharjilk/popItUp/blob/master/README.md" target="_blank">Documentation</a>
+            <a class="pull-right" href="https://github.com/sharjilk/popItUp" target="_blank">Go to Github</a>
+          </h3>
         </div>
       </div>
 
+      <div class="row margin-top-40">
+        <h3 class="well">Example Demo</h3>
+        <ul class="list-group">
+          <li class="list-group-item">
+            <h4>Change overlay color and its opacity</h4>
+            <pre>
+              $('#showPopupBtn').click(function(){
+                $('.popit-wrapper').popitup({
+                  overlayColor: "#4a5",
+                  overlayOpacity: "0.2"
+                });
+              });
+            </pre>
+            <a class="btn btn-sm btn-primary btn-overlay" href="javascript:void(0);" role="button">Show Popup</a>
+            <hr>
+          </li>
+          <li class="list-group-item">
+            <h4>Popup will close if clicked outside</h4>
+            <pre>
+              $('#showPopupBtn').click(function(){
+                $('.popit-wrapper').popitup({
+                  autoClose: true
+                });
+              });
+            </pre>
+            <a class="btn btn-sm btn-primary btn-autoClose" href="javascript:void(0);" role="button">Show Popup</a>
+            <hr>
+          </li>
+          <li class="list-group-item">
+            <h4>Give animation like slideUp, slideDown, slideLeft, slideRight on opening and closing of modal</h4>
+            <pre>
+              $('#showPopupBtn').click(function(){
+                $('.popit-wrapper').popitup({
+                  animation: "slideLeft"
+                });
+              });
+            </pre>
+            <a class="btn btn-sm btn-primary btn-animation" href="javascript:void(0);" role="button">Show Popup</a>
+            <hr>
+          </li>
+          <li class="list-group-item">
+            <h4>Change the text and background color of elements inside your popup.</h4>
+            <pre>
+              $('#showPopupBtn').click(function(){
+                $('.popit-wrapper').popitup({
+                  colorChange: {
+                    color: "#fff",
+                    background: "#000"
+                  },
+                  overlayColor: "#fff"
+                });
+              });
+            </pre>
+            <a class="btn btn-sm btn-primary btn-colorChange" href="javascript:void(0);" role="button">Show Popup</a>
+            <hr>
+          </li>
+          <li class="list-group-item">
+            <h4>Stop the Modal to follow the center of the screen as you scrolls page up and down.</h4>
+            <pre>
+              $('#showPopupBtn').click(function(){
+                $('.popit-wrapper').popitup({
+                  chase: false
+                });
+              });
+            </pre>
+            <a class="btn btn-sm btn-primary btn-chase" href="javascript:void(0);" role="button">Show Popup</a>
+            <hr>
+          </li>
+          <li class="list-group-item">
+            <h4>Set position of modal in viewport - give offset values of x and y</h4>
+            <pre>
+              $('#showPopupBtn').click(function(){
+                $('.popit-wrapper').popitup({
+                  modalPosition: [200, 300]
+                });
+              });
+            </pre>
+            <a class="btn btn-sm btn-primary btn-position" href="javascript:void(0);" role="button">Show Popup</a>
+            <hr>
+          </li>
+          <li class="list-group-item">
+            <h4>Call an AJAX request inside the popup. Note :- It must need <u><em>containerToLoad</em></u> option to load the requested ajax data.</h4>
+            <pre>
+              $('#showPopupBtn').click(function(){
+                $('.popit-wrapper').popitup({
+                  containerToLoad: ".content-wrapper",
+                  urlToLoad: "ajax-test.html"
+                });
+              });
+            </pre>
+            <a class="btn btn-sm btn-primary btn-ajax" href="javascript:void(0);" role="button">Show Popup</a>
+            <hr>
+          </li>
+          <li class="list-group-item">
+            <h4>Load an image to your popup. Need to specify <u><em>containerToLoad</em></u> option.</h4>
+            <pre>
+              $('#showPopupBtn').click(function(){
+                $('.popit-wrapper').popitup({
+                  containerToLoad: ".content-wrapper",
+                  imageToLoad: "cricket-ball.jpg"
+                });
+              });
+            </pre>
+            <a class="btn btn-sm btn-primary btn-image" href="javascript:void(0);" role="button">Show Popup</a>
+            <hr>
+          </li>
+
+          <!-- Callback -->
+          <li class="list-group-item">
+            <h4>Callback functions</h4>
+            <p>Functions trigger when their corresponding events happen - like open and close.</p>
+            <pre>
+              $('#showPopupBtn').click(function(){
+                $('.popit-wrapper').popitup({
+                  
+                  ...,
+                  onOpenModal : function(){
+                    /** Your onOpen code goes here... */
+                  },
+                  onCloseModal : function(){
+                    /** Your onClose code goes here... */
+                  }
+                });
+              });
+            </pre>
+          </li>
+        </ul>
+      </div>
+
       <!-- model html -->
-      <div class="popit-wrapper">
+      <div class="popit-wrapper popit-wrapper-overlay">
         <div class="popit-content">
           <div class="popit-header">
-            <button type="button" class="popitup-close close">close</button>
+            <button type="button" class="popitup-close close"><span class="glyphicon glyphicon-remove-circle"></span></button>
             <h4 class="popit-title">Modal title</h4>
           </div>
           <div class="popit-body">
             <p>One fine body&hellip;</p>
+            <div class="content-wrapper"></div>
           </div>
           <div class="popit-footer">
-            <button type="button" class="btn btn-default">Close</button>
+            <button type="button" class="btn btn-default popitup-close">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="popit-wrapper popit-wrapper-autoClose">
+        <div class="popit-content">
+          <div class="popit-header">
+            <button type="button" class="popitup-close close"><span class="glyphicon glyphicon-remove-circle"></span></button>
+            <h4 class="popit-title">Modal title</h4>
+          </div>
+          <div class="popit-body">
+            <p>One fine body&hellip;</p>
+            <div class="content-wrapper"></div>
+          </div>
+          <div class="popit-footer">
+            <button type="button" class="btn btn-default popitup-close">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="popit-wrapper popit-wrapper-animation">
+        <div class="popit-content">
+          <div class="popit-header">
+            <button type="button" class="popitup-close close"><span class="glyphicon glyphicon-remove-circle"></span></button>
+            <h4 class="popit-title">Modal title</h4>
+          </div>
+          <div class="popit-body">
+            <p>One fine body&hellip;</p>
+            <div class="content-wrapper"></div>
+          </div>
+          <div class="popit-footer">
+            <button type="button" class="btn btn-default popitup-close">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="popit-wrapper popit-wrapper-colorChange">
+        <div class="popit-content">
+          <div class="popit-header">
+            <button type="button" class="popitup-close close"><span class="glyphicon glyphicon-remove-circle"></span></button>
+            <h4 class="popit-title">Modal title</h4>
+          </div>
+          <div class="popit-body">
+            <p>One fine body&hellip;</p>
+            <div class="content-wrapper"></div>
+          </div>
+          <div class="popit-footer">
+            <button type="button" class="btn btn-default popitup-close">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="popit-wrapper popit-wrapper-chase">
+        <div class="popit-content">
+          <div class="popit-header">
+            <button type="button" class="popitup-close close"><span class="glyphicon glyphicon-remove-circle"></span></button>
+            <h4 class="popit-title">Modal title</h4>
+          </div>
+          <div class="popit-body">
+            <p>One fine body&hellip;</p>
+            <div class="content-wrapper"></div>
+          </div>
+          <div class="popit-footer">
+            <button type="button" class="btn btn-default popitup-close">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="popit-wrapper popit-wrapper-position">
+        <div class="popit-content">
+          <div class="popit-header">
+            <button type="button" class="popitup-close close"><span class="glyphicon glyphicon-remove-circle"></span></button>
+            <h4 class="popit-title">Modal title</h4>
+          </div>
+          <div class="popit-body">
+            <p>One fine body&hellip;</p>
+            <div class="content-wrapper"></div>
+          </div>
+          <div class="popit-footer">
+            <button type="button" class="btn btn-default popitup-close">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="popit-wrapper popit-wrapper-ajax">
+        <div class="popit-content">
+          <div class="popit-header">
+            <button type="button" class="popitup-close close"><span class="glyphicon glyphicon-remove-circle"></span></button>
+            <h4 class="popit-title">Modal title</h4>
+          </div>
+          <div class="popit-body">
+            <p>One fine body&hellip;</p>
+            <div class="content-wrapper"></div>
+          </div>
+          <div class="popit-footer">
+            <button type="button" class="btn btn-default popitup-close">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="popit-wrapper popit-wrapper-image">
+        <div class="popit-content">
+          <div class="popit-header">
+            <button type="button" class="popitup-close close"><span class="glyphicon glyphicon-remove-circle"></span></button>
+            <h4 class="popit-title">Modal title</h4>
+          </div>
+          <div class="popit-body">
+            <p>One fine body&hellip;</p>
+            <div class="content-wrapper"></div>
+          </div>
+          <div class="popit-footer">
+            <button type="button" class="btn btn-default popitup-close">Close</button>
             <button type="button" class="btn btn-primary">Save changes</button>
           </div>
         </div>
@@ -104,7 +349,7 @@
 
       <!-- Site footer -->
       <footer class="footer">
-        <p>© 2015 PopItUp, Inc.</p>
+        <p>© 2016 PopItUp, Inc.</p>
       </footer>
 
     </div>
@@ -117,10 +362,63 @@
 
     <script>
     $(document).ready(function(){
-      $('#showPopupBtn').click(function(){
+
+      $('.btn-sm').bind('click', function(){
+        if($(this).hasClass('btn-overlay')){
+          $('.popit-wrapper-overlay').popitup({
+            overlayColor: "#4a5",
+            overlayOpacity: "0.8"
+          });
+        }
+        if($(this).hasClass('btn-autoClose')){
+          $('.popit-wrapper-autoClose').popitup({
+            autoClose: true
+          });
+        }
+        if($(this).hasClass('btn-animation')){
+          $('.popit-wrapper-animation').popitup({
+            animation: "slideLeft",
+            autoClose: true
+          });
+        }
+        if($(this).hasClass('btn-colorChange')){
+          $('.popit-wrapper-colorChange').popitup({
+            colorChange: {
+                    color: "#fff",
+                    background: "#000"
+                  },
+            overlayColor: "#f00"
+          });
+        }
+        if($(this).hasClass('btn-chase')){
+          $('.popit-wrapper-chase').popitup({
+            chase: false
+          });
+        }
+        if($(this).hasClass('btn-position')){
+          $('.popit-wrapper-position').popitup({
+            modalPosition: [200, 300]
+          });
+        }
+        if($(this).hasClass('btn-ajax')){
+          $('.popit-wrapper-ajax').popitup({
+            containerToLoad: ".content-wrapper",
+            urlToLoad: "ajax-test.html"
+          });
+        }
+        if($(this).hasClass('btn-image')){
+          $('.popit-wrapper-image').popitup({
+            containerToLoad: ".content-wrapper",
+            imageToLoad: "cricket-ball.jpg"
+          });
+        }
+      });
+
+      /*$('#showPopupBtn').click(function(){
         $('.popit-wrapper').popitup({
-          widthSet: "500",
+          widthSet: "300",
           overlayColor: "#000",
+          overlayOpacity: "0.5",
           autoClose: true,
           colorChange: {
             color: "#000",
@@ -129,14 +427,19 @@
           animation: "slideDown",
           chase: true,
           chaseSpeed: "500",
+          fixedModal: false,
+          modalPosition: "",
+          containerToLoad: ".content-wrapper",
+          urlToLoad: "ajax-test.html",
+          imageToLoad: "cricket-ball.jpg",
           onCloseModal : function(){
-            alert("modal close");
+            //alert("modal close");
           },
           onOpenModal : function(){
             //alert("modal open");
           }
         });
-      });
+      });*/
     });
     </script>
 
