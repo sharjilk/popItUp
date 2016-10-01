@@ -6,7 +6,7 @@ Suggest something on it or report an issue to help me making it healty.
 It requires jquery - First add a reference to jquery library than popitup plugin as follows:
 ```
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/x.x.x/jquery.min.js"></script>
-<script src="jquery.bpopup-x.x.x.min.js"></script>
+<script src="jquery.popItUp.min.js"></script>
 ```
 
 Add a link or button that fire the popup and a div that acts as a wrapper for popup.
